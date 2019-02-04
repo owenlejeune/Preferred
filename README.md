@@ -1,4 +1,6 @@
 # Preferred
+[![Build Status](https://travis-ci.com/owenlejeune/Preferred.svg?branch=master)](https://travis-ci.com/owenlejeune/Preferred)
+
 A simple and powerful Android library for handling Shared Preferences
 
 Simply initialize the **Preferred** instance in you Application class `onCreate()` method and you're ready to go
