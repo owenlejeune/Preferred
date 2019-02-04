@@ -46,13 +46,13 @@ public class PreferredSwitchPreference extends SwitchPreference {
     }
 
     private boolean setPreference(Object newVal) {
-        boolean result = Preferred.putBoolean(getKey(), (boolean)newVal);
+        boolean result = Preferred.putBooleanStatic(getKey(), (boolean)newVal);
         firePreferenceChanged(newVal);
         return result;
     }
 
     public boolean getPreference() {
-        return Preferred.getBoolean(getKey());
+        return Preferred.getBooleanStatic(getKey());
     }
 
     public void addPreferenceChangeListener(PreferredChangeListener listener) {

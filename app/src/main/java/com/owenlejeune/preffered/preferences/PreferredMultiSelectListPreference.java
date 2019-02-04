@@ -48,13 +48,13 @@ public class PreferredMultiSelectListPreference extends MultiSelectListPreferenc
 
     @SuppressWarnings("unchecked")
     private boolean setPreference(Object newVal) {
-        boolean result = Preferred.putStringSet(getKey(), (Set<String>)newVal);
+        boolean result = Preferred.putStringSetStatic(getKey(), (Set<String>)newVal);
         firePreferenceChanged(newVal);
         return result;
     }
 
     public Set<String> getPreference() {
-        return Preferred.getStringSet(getKey());
+        return Preferred.getStringSetStatic(getKey());
     }
 
     public void addPreferenceChangeListener(PreferredChangeListener listener) {

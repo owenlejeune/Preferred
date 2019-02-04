@@ -3,6 +3,7 @@ package com.owenlejeune.preffered;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -15,19 +16,14 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public class Preferred {
 
+    private static final String TAG = Preferred.class.getSimpleName();
     private static final String DEFAULT_SUFFIX = "_preferences";
     private static Preferred INSTANCE;
-//    private static SharedPreferences sharedPreferences;
     private SharedPreferences sharedPreferences;
 
     public static Preferred getInstance() {
         if (INSTANCE == null) {
             throw new RuntimeException("Instance has not been initialized.  Please call Builder.build() to initialize");
-//            synchronized (Preferred.class) {
-//                if (INSTANCE == null) {
-//                    INSTANCE = new Preferred();
-//                }
-//            }
         }
         return INSTANCE;
     }
@@ -41,9 +37,11 @@ public class Preferred {
     }
 
     private static void init(Context context, String key) {
-        INSTANCE = new Preferred(context, key);
-//        sharedPreferences = context.getSharedPreferences(key, Context.MODE_PRIVATE);
-
+        if (!Objects.isNull(INSTANCE)) {
+            Log.w(TAG, "Instance has already been initialized.  Skipping initialization.");
+        } else {
+            INSTANCE = new Preferred(context, key);
+        }
     }
 
     /**
@@ -53,7 +51,7 @@ public class Preferred {
      * @throws RuntimeException if {@link this#sharedPreferences} has not been initialized
      * yet
      */
-    public /*static*/ SharedPreferences getPreferences() {
+    public SharedPreferences getPreferences() {
         if (sharedPreferences != null) {
             return sharedPreferences;
         }
@@ -76,7 +74,7 @@ public class Preferred {
      * @return a {@link Map} containing all key/value pairs of preferences
      * @see SharedPreferences#getAll()
      */
-    public /*static*/ Map<String, ?> getAllPrefs() {
+    public Map<String, ?> getAllPrefs() {
         return getPreferences().getAll();
     }
 
@@ -99,7 +97,7 @@ public class Preferred {
      * @return True if the value was stored successfully, false otherwise
      * @see android.content.SharedPreferences.Editor#putInt(String, int)
      */
-    public /*static*/ boolean putInt(final String key, final int value) {
+    public boolean putInt(final String key, final int value) {
         final SharedPreferences.Editor editor = getPreferences().edit();
         editor.putInt(key, value);
         return editor.commit();
@@ -126,7 +124,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see SharedPreferences#getInt(String, int)
      */
-    public /*static*/ int getInt(final String key, final int defaultValue) {
+    public int getInt(final String key, final int defaultValue) {
         return getPreferences().getInt(key, defaultValue);
     }
 
@@ -150,7 +148,7 @@ public class Preferred {
      * @return the preference value, or 0
      * @see Preferred#getInt(String, int)
      */
-    public /*static*/ int getInt(final String key) {
+    public int getInt(final String key) {
         return getInt(key, 0);
     }
 
@@ -174,7 +172,7 @@ public class Preferred {
      * @return True if the value was stored successfully, false otherwise
      * @see android.content.SharedPreferences.Editor#putBoolean(String, boolean)
      */
-    public /*static*/ boolean putBoolean(final String key, final boolean value) {
+    public boolean putBoolean(final String key, final boolean value) {
         final SharedPreferences.Editor editor = getPreferences().edit();
         editor.putBoolean(key, value);
         return editor.commit();
@@ -201,7 +199,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see SharedPreferences#getBoolean(String, boolean)
      */
-    public /*static*/ boolean getBoolean(final String key, final boolean defaultValue) {
+    public boolean getBoolean(final String key, final boolean defaultValue) {
         return getPreferences().getBoolean(key, defaultValue);
     }
 
@@ -225,7 +223,7 @@ public class Preferred {
      * @return the preference value, or false
      * @see Preferred#getBoolean(String, boolean)
      */
-    public /*static*/ boolean getBoolean(final String key) {
+    public boolean getBoolean(final String key) {
         return getBoolean(key, false);
     }
 
@@ -249,7 +247,7 @@ public class Preferred {
      * @return True if the value was stored successfully, false otherwise
      * @see android.content.SharedPreferences.Editor#putLong(String, long)
      */
-    public /*static*/ boolean putLong(final String key, final long value) {
+    public boolean putLong(final String key, final long value) {
         final SharedPreferences.Editor editor = getPreferences().edit();
         editor.putLong(key, value);
         return editor.commit();
@@ -276,7 +274,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see SharedPreferences#getLong(String, long)
      */
-    public /*static*/ long getLong(final String key, final long defaultValue) {
+    public long getLong(final String key, final long defaultValue) {
         return getPreferences().getLong(key, defaultValue);
     }
 
@@ -300,7 +298,7 @@ public class Preferred {
      * @return the preference value, or 0L
      * @see Preferred#getLong(String, long)
      */
-    public /*static*/ long getLong(final String key) {
+    public long getLong(final String key) {
         return getLong(key, 0L);
     }
 
@@ -324,7 +322,7 @@ public class Preferred {
      * @return True if the value was stored successfully, false otherwise
      * @see android.content.SharedPreferences.Editor#putFloat(String, float) nt)
      */
-    public /*static*/ boolean putFloat(final String key, final float value) {
+    public boolean putFloat(final String key, final float value) {
         final SharedPreferences.Editor editor = getPreferences().edit();
         editor.putFloat(key, value);
         return editor.commit();
@@ -351,7 +349,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see SharedPreferences#getFloat(String, float)
      */
-    public /*static*/ float getFloat(final String key, final float defaultValue) {
+    public float getFloat(final String key, final float defaultValue) {
         return getPreferences().getFloat(key, defaultValue);
     }
 
@@ -375,7 +373,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see Preferred#getFloat(String, float)
      */
-    public /*static*/ float getFloat(final String key) {
+    public float getFloat(final String key) {
         return getFloat(key, 0f);
     }
 
@@ -399,7 +397,7 @@ public class Preferred {
      * @return True if the value was stored successfully, false otherwise
      * @see android.content.SharedPreferences.Editor#putString(String, String)
      */
-    public /*static*/ boolean putString(final String key, final String value) {
+    public boolean putString(final String key, final String value) {
         final SharedPreferences.Editor editor = getPreferences().edit();
         editor.putString(key, value);
         return editor.commit();
@@ -426,7 +424,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see SharedPreferences#getString(String, String)
      */
-    public /*static*/ String getString(final String key, final String defaultValue) {
+    public String getString(final String key, final String defaultValue) {
         return getPreferences().getString(key, defaultValue);
     }
 
@@ -450,7 +448,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see Preferred#getString(String, String)
      */
-    public /*static*/ String getString(final String key) {
+    public String getString(final String key) {
         return getString(key, "");
     }
 
@@ -474,7 +472,7 @@ public class Preferred {
      * @return True if the value was stored successfully, false otherwise
      * @see android.content.SharedPreferences.Editor#putStringSet(String, Set)
      */
-    public /*static*/ boolean putStringSet(final String key, final Set<String> value) {
+    public boolean putStringSet(final String key, final Set<String> value) {
         final SharedPreferences.Editor editor = getPreferences().edit();
         editor.putStringSet(key, value);
         return editor.commit();
@@ -501,7 +499,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see SharedPreferences#getStringSet(String, Set)
      */
-    public /*static*/ Set<String> getStringSet(final String key, final Set<String> defaultValue) {
+    public Set<String> getStringSet(final String key, final Set<String> defaultValue) {
         return getPreferences().getStringSet(key, defaultValue);
     }
 
@@ -525,7 +523,7 @@ public class Preferred {
      * @return the preference value, or defaultValue
      * @see Preferred#getStringSet(String, Set)
      */
-    public /*static*/ Set<String> getStringSet(final String key) {
+    public Set<String> getStringSet(final String key) {
         return getStringSet(key, new HashSet<>());
     }
 
@@ -548,7 +546,7 @@ public class Preferred {
      * @return True if removal was successful, false otherwise
      * @see android.content.SharedPreferences.Editor#remove(String)
      */
-    public /*static*/ boolean removePreference(final String key) {
+    public boolean removePreference(final String key) {
         SharedPreferences preferences = getPreferences();
         final SharedPreferences.Editor editor = preferences.edit();
         editor.remove(key);
@@ -574,7 +572,7 @@ public class Preferred {
      * @return True if preference exists, false otherwise
      * @see SharedPreferences#contains(String)
      */
-    public /*static*/ boolean containsPreference(final String key) {
+    public boolean containsPreference(final String key) {
         return getPreferences().contains(key);
     }
 
@@ -596,7 +594,7 @@ public class Preferred {
      * @return the {@link android.content.SharedPreferences.Editor} for chaining
      * @see SharedPreferences.Editor#clear()
      */
-    public /*static*/ SharedPreferences.Editor removeAllPrefs() {
+    public SharedPreferences.Editor removeAllPrefs() {
         final SharedPreferences.Editor editor = getPreferences().edit();
         editor.clear();
         editor.apply();
@@ -619,7 +617,7 @@ public class Preferred {
      * {@link SharedPreferences} instance
      * @see SharedPreferences#edit()
      */
-    public /*static*/ SharedPreferences.Editor edit() {
+    public SharedPreferences.Editor edit() {
         return getPreferences().edit();
     }
 

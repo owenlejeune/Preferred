@@ -47,14 +47,14 @@ public class PreferredListPreference extends ListPreference {
     }
 
     private boolean setPreference(Object newVal) {
-        boolean result = Preferred.putString(getKey(), (String)newVal);
+        boolean result = Preferred.putStringStatic(getKey(), (String)newVal);
         firePreferenceChanged(newVal);
         refresh();
         return result;
     }
 
     public String getPreference() {
-        return Preferred.getString(getKey());
+        return Preferred.getStringStatic(getKey());
     }
 
     public void addPreferenceChangeListener(PreferredChangeListener listener) {
