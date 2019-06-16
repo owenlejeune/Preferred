@@ -86,7 +86,7 @@ android:
     - sys-img-x86-android-26
 env:
   matrix:
-    - ANDROID_TARGET=android-26  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-26  ANDROID_ABI=x86
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
