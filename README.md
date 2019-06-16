@@ -4,17 +4,16 @@
 A simple and powerful Android library for handling Shared Preferences
 
 Simply initialize the **Preferred** instance in you Application class `onCreate()` method and you're ready to go
-```Java
-public class PreferredApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
+```Kotlin
+class PreferredApplication: Application() {
+    override fun onCreate() {
+        super.onCreate()
         // initialize Preferred
-        new Preferred.Builder()
+        Preferred.Builder()
             .setContext(this)
             .setPrefsName(getPackageName())
             .setUseDefaultSharedPreferences(true)
-            .build();
+            .build()
     }
 }
 ```
@@ -24,22 +23,22 @@ Once **Preferred** has been initialized, there are two ways you can handle share
 
 #### Methods
 **Preferred** offers both static and member functions for all shared preference value types.  Storing a value is as simple as
-```Java
+```Kotlin
 // Static Methods
-Preferred.putStringStatic(key, string);
-Preferred.putFloatStatic(key, float);
+Preferred.putStringStatic(key, string)
+Preferred.putFloatStatic(key, float)
 // Member functions
-Preferred.getInstance().putString(key, string);
-Preferred.getInstance().putLong(key, long);
+Preferred.getInstance().putString(key, string)
+Preferred.getInstance().putLong(key, long)
 ```
 Retrieving a value is also simple.  Providing a key will return the **Preferred** default value if that preference does not exist, but an option default value can also be provided.
-```Java
+```Kotlin
 // Static
-String staticData = Preferred.getStringStatic(key, string);
-float staticNumber = Preferred.getFloatStatic(key);
+val staticData = Preferred.getStringStatic(key, string)
+val staticNumber = Preferred.getFloatStatic(key)
 // Member
-String data = Preferred.getInstance().getString(key);
-float number = Preferred.getInstance().getFloat(key, float);
+val data = Preferred.getInstance().getString(key);
+val number = Preferred.getInstance().getFloat(key, float)
 ```
 
 #### Preferences
@@ -77,9 +76,17 @@ You must specify a `key` attribute for each preference because that is the value
 Grab the latest release through Gradle:
 ```groovy
 dependencies {
-    implementation 'com.github.owenlejeune:Preferred:1.0'
+    implementation 'com.github.owenlejeune:Preferred:2.0'
 }
 ```
+
+## Releases
+
+#### 2.0
+* **NEW** Completely re-written in Kotlin!
+
+#### 1.0
+* Initial release
 
 ## License
 ```
