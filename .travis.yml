@@ -77,15 +77,16 @@
 language: android
 android:
   components:
-    - build-tools-25.0.3
+    - build-tools-26.0.3
     - $ANDROID_TARGET
     - sys-img-armeabi-v7a-$ANDROID_TARGET
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
+    - sys-img-x86-android-26
 env:
   matrix:
-    - ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-26  ANDROID_ABI=armeabi-v7a
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
