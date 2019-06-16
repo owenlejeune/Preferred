@@ -74,21 +74,66 @@
 
 # ---------------------------
 
+#language: android
+#android:
+#  components:
+#    - build-tools-26.0.3
+#    - $ANDROID_TARGET
+#    - sys-img-armeabi-v7a-$ANDROID_TARGET
+#    - extra-android-support
+#    - extra-android-m2repository
+#    - extra-google-m2repository
+#    - sys-img-x86-android-26
+#env:
+#  matrix:
+#    - ANDROID_TARGET=android-26  ANDROID_ABI=x86
+#before_script:
+#  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+#  - emulator -avd test -no-skin -no-audio -no-window &
+#  - android-wait-for-emulator
+#  - adb shell input keyevent 82 &
+
+# ---------------------------
+
 language: android
+sudo: required
+jdk: oraclejdk8
+
+env:
+  global:
+    - ANDROID_API_LEVEL=28
+    - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+    - ANDROID_ABI=armeabi-v7a
+
 android:
   components:
-    - build-tools-26.0.3
-    - $ANDROID_TARGET
-    - sys-img-armeabi-v7a-$ANDROID_TARGET
-    - extra-android-support
+    - tools
+    - platform-tools
+    - tools
     - extra-android-m2repository
-    - extra-google-m2repository
-    - sys-img-x86-android-26
-env:
-  matrix:
-    - ANDROID_TARGET=android-26  ANDROID_ABI=x86
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+before_install:
+  - touch $HOME/.android/repositories.cfg
+  - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "build-tools;28.0.3"
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
 before_script:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+  - chmod +x gradlew
+
+script:
+  - ./gradlew clean build
+  - ./gradlew test
