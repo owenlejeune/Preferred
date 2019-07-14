@@ -76,7 +76,7 @@ You must specify a `key` attribute for each preference because that is the value
 Grab the latest release through Gradle:
 ```groovy
 dependencies {
-    implementation 'com.github.owenlejeune:Preferred:2.0'
+    implementation 'com.github.owenlejeune:Preferred:2.0.1'
 }
 ```
 
