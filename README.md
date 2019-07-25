@@ -37,7 +37,7 @@ Retrieving a value is also simple.  Providing a key will return the **Preferred*
 val staticData = Preferred.getStringStatic(key, string)
 val staticNumber = Preferred.getFloatStatic(key)
 // Member
-val data = Preferred.getInstance().getString(key);
+val data = Preferred.getInstance().getString(key)
 val number = Preferred.getInstance().getFloat(key, float)
 ```
 
@@ -56,6 +56,9 @@ These classes contain all the functionality of the normal Android preference imp
     <com.owenlejeune.preffered.preferences.PreferredCheckBoxPreference
         ...
         android:key="checkBoxPref" />
+    <com.owenlejeune.preffered.preferences.PreferredDropDownPreference
+        ...
+        android:key="dropDownPref" />
     <com.owenlejeune.preffered.preferences.PreferredEditTextPreference
         ...
         android:key="editTextPref" />
@@ -65,6 +68,9 @@ These classes contain all the functionality of the normal Android preference imp
     <com.owenlejeune.preffered.preferences.PreferredMultiSelectListPreference
         ...
         android:key="multiListPref" />
+    <com.owenlejeune.preffered.preferences.PreferredSeekBarPreference
+            ...
+            android:key="seekBarPref" />
     <com.owenlejeune.preffered.preferences.PreferredSwitchPreference
         ...
         android:key="switchPref" />
@@ -76,11 +82,18 @@ You must specify a `key` attribute for each preference because that is the value
 Grab the latest release through Gradle:
 ```groovy
 dependencies {
-    implementation 'com.github.owenlejeune:Preferred:2.0.1'
+    implementation 'com.github.owenlejeune:Preferred:2.1.0'
 }
 ```
 
 ## Releases
+
+#### 2.1
+* **NEW** written with androidx!
+* also increases support up to API 29 (Q) and down to API 19 (KitKat)
+* new preference additions:
+    * PreferredDropDownPreference
+    * PreferredSeekBarPreference
 
 #### 2.0
 * **NEW** Completely re-written in Kotlin!

@@ -1,7 +1,7 @@
 package com.owenlejeune.preffered.preferences
 
 import android.content.Context
-import android.preference.SwitchPreference
+import androidx.preference.SwitchPreference
 import android.util.AttributeSet
 import com.owenlejeune.preffered.Preferred
 import com.owenlejeune.preffered.listeners.PreferredChangeListener
@@ -10,8 +10,7 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * Implementation of [SwitchPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredSwitchPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int)
-    : SwitchPreference(context, attrs, defStyleAttr) {
+open class PreferredSwitchPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): SwitchPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 
