@@ -1,7 +1,7 @@
 package com.owenlejeune.preffered.preferences
 
 import android.content.Context
-import android.preference.EditTextPreference
+import androidx.preference.EditTextPreference
 import android.util.AttributeSet
 import com.owenlejeune.preffered.Preferred
 import com.owenlejeune.preffered.listeners.PreferredChangeListener
@@ -10,8 +10,7 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * Implementation of [EditTextPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredEditTextPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int)
-    : EditTextPreference(context, attrs, defStyleAttr) {
+open class PreferredEditTextPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): EditTextPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 

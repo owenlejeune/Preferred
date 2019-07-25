@@ -1,7 +1,7 @@
 package com.owenlejeune.preffered.preferences
 
 import android.content.Context
-import android.preference.ListPreference
+import androidx.preference.ListPreference
 import android.util.AttributeSet
 import com.owenlejeune.preffered.Preferred
 import com.owenlejeune.preffered.listeners.PreferredChangeListener
@@ -10,8 +10,7 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * Implementation of [ListPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredListPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int)
-    : ListPreference(context, attrs, defStyleAttr) {
+open class PreferredListPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): ListPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 
