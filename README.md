@@ -52,7 +52,7 @@ val number = Preferred.getInstance().getFloat(key, float)
 These classes contain all the functionality of the normal Android preference implementation, with added functionality for automatically handling commits through **Preferred**.  Simply use these classes in your `preferences.xml`, then inflate your preferences like you would normally.
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <com.owenlejeune.preffered.preferences.PreferredCheckBoxPreference
         ...
         android:key="checkBoxPref" />
@@ -74,7 +74,7 @@ These classes contain all the functionality of the normal Android preference imp
     <com.owenlejeune.preffered.preferences.PreferredSwitchPreference
         ...
         android:key="switchPref" />
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
 ```
 You must specify a `key` attribute for each preference because that is the value that will be used for all **Preferred** get/put methods.
 
