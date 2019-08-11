@@ -34,7 +34,7 @@ open class PreferredSeekBarPreference(context: Context?, attrs: AttributeSet?) :
         listeners.add(listener)
     }
 
-    fun removePreferenceChangeListeenr(listener: PreferredChangeListener) {
+    fun removePreferenceChangeListener(listener: PreferredChangeListener) {
         listeners.remove(listener)
     }
 

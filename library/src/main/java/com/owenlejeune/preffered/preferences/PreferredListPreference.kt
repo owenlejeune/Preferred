@@ -19,12 +19,16 @@ open class PreferredListPreference(context: Context, attrs: AttributeSet, defSty
             listeners = ArrayList()
             refresh()
             setOnPreferenceChangeListener { _, n ->  setPreference(n)}
+            summary = if (getPreference().isNotBlank()) {
+                entries[entryValues.indexOf(getPreference())]
+            } else { entries[0] }
         }
         ?: throw RuntimeException("No key defined for this preference.  Please set one in preferences.xml")
     }
 
     private fun setPreference(newVal: Any): Boolean {
         val result = Preferred.putStringStatic(key, newVal as String)
+        value = newVal
         firePreferenceChanged(newVal)
         refresh()
         return result
