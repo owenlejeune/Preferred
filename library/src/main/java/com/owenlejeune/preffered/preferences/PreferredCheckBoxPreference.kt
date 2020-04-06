@@ -10,7 +10,10 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * Implementation of [CheckBoxPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredCheckBoxPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): CheckBoxPreference(context, attrs, defStyleAttr) {
+open class PreferredCheckBoxPreference @JvmOverloads constructor(context: Context,
+                                                                 attrs: AttributeSet? = null,
+                                                                 defStyleAttr: Int = 0)
+    : CheckBoxPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 

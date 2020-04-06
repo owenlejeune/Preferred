@@ -11,7 +11,10 @@ import java.lang.RuntimeException
  * Implementation of [SeekBarPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredSeekBarPreference(context: Context?, attrs: AttributeSet?) : SeekBarPreference(context, attrs) {
+open class PreferredSeekBarPreference @JvmOverloads constructor(context: Context,
+                                                                attrs: AttributeSet? = null,
+                                                                defStyleAttr: Int = 0)
+    : SeekBarPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 

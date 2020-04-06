@@ -11,7 +11,10 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * changes, as well as auto-commit when the preference value changes
  */
 @Suppress("UNCHECKED_CAST")
-open class PreferredMultiSelectListPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): MultiSelectListPreference(context, attrs, defStyleAttr) {
+open class PreferredMultiSelectListPreference @JvmOverloads constructor(context: Context,
+                                                                        attrs: AttributeSet? = null,
+                                                                        defStyleAttr: Int = 0)
+    : MultiSelectListPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 

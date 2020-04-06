@@ -10,7 +10,10 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * Implementation of [SwitchPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredSwitchPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): SwitchPreference(context, attrs, defStyleAttr) {
+open class PreferredSwitchPreference @JvmOverloads constructor(context: Context,
+                                                               attrs: AttributeSet? = null,
+                                                               defStyleAttr: Int = 0)
+    : SwitchPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 

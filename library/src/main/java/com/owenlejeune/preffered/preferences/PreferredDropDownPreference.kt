@@ -11,7 +11,10 @@ import java.lang.RuntimeException
  * Implementation of [DropDownPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredDropDownPreference(context: Context?, attrs: AttributeSet?): DropDownPreference(context, attrs) {
+open class PreferredDropDownPreference @JvmOverloads constructor(context: Context,
+                                                                 attrs: AttributeSet? = null,
+                                                                 defStyleAttr: Int = 0)
+    : DropDownPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 

@@ -10,7 +10,10 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * Implementation of [ListPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredListPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): ListPreference(context, attrs, defStyleAttr) {
+open class PreferredListPreference @JvmOverloads constructor(context: Context,
+                                                             attrs: AttributeSet? = null,
+                                                             defStyleAttr: Int = 0)
+    : ListPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 

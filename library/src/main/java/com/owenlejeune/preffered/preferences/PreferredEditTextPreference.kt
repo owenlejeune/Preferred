@@ -10,7 +10,10 @@ import com.owenlejeune.preffered.listeners.PreferredChangeListener
  * Implementation of [EditTextPreference] with the ability to add listeners for preference
  * changes, as well as auto-commit when the preference value changes
  */
-open class PreferredEditTextPreference(context: Context, attrs: AttributeSet, defStyleAttr: Int): EditTextPreference(context, attrs, defStyleAttr) {
+open class PreferredEditTextPreference @JvmOverloads constructor(context: Context,
+                                                                 attrs: AttributeSet? = null,
+                                                                 defStyleAttr: Int = 0)
+    : EditTextPreference(context, attrs, defStyleAttr) {
 
     private lateinit var listeners: MutableList<PreferredChangeListener>
 
