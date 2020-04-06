@@ -82,11 +82,14 @@ You must specify a `key` attribute for each preference because that is the value
 Grab the latest release through Gradle:
 ```groovy
 dependencies {
-    implementation 'com.github.owenlejeune:Preferred:2.1.1'
+    implementation 'com.github.owenlejeune:Preferred:2.1.2'
 }
 ```
 
 ## Releases
+
+#### 2.1.2
+* support for JvmOverloads constructors
 
 #### 2.1
 * **NEW** written with androidx!
